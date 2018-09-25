@@ -9,7 +9,6 @@
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.glassfish.tools.lib.system">
@@ -17,10 +16,42 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_181">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/aopalliance-repackaged-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/cdi-api-1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/el-api-2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/hk2-api-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/hk2-locator-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/hk2-utils-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javassist-3.22.0-CR2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.inject-2.5.0-b42.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.json-1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.json-api-1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.json.bind-api-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/javax.ws.rs-api-2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jaxb-api-2.2.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-client.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-common.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-container-servlet-core.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-container-servlet.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-hk2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-media-jaxb.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-media-json-binding.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-media-sse.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jersey-server.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/jsr250-api-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/bin/yasson-1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
