@@ -11,23 +11,23 @@ import org.json.JSONObject;
 
 import com.mx.lamarrulla.implement.implementAPI;
 
-@Path("lamarrullaAPI")
+@Path("TablaAmoritza")
 @Consumes("application/json")
 @Produces("application/json")
-public class lamarrullaAPI {
+public class TablaAmortiza {
 	implementAPI objAPI = new implementAPI();
-	JSONObject jso = new JSONObject();
-	public lamarrullaAPI() {}
+	JSONObject jso = new JSONObject(); 
+	public TablaAmortiza() {}
 	@GET
-	public String api(@Context HttpHeaders headers) {
+	public String Tabla(@Context HttpHeaders headers) {
 		try {			
-			objAPI.setConsulta("select * from fnAPI('"+ headers.getHeaderString("tabla") + "');");
-			objAPI.ejecutaAPI();		
-			jso = objAPI.getJsonObject();			
+			objAPI.setConsulta("select * from fntablaamortcs(" + headers.getHeaderString("monto") + ", " + headers.getHeaderString("tasa") + ", " + headers.getHeaderString("plazo") + ");");
+			objAPI.ejecutaAPI();
+			jso = objAPI.getJsonObject();
 			System.out.println(jso.toString());
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}						
 		return jso.toString();
-	}
+	}	
 }
