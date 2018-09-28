@@ -16,14 +16,14 @@ import com.mx.lamarrulla.implement.implementAPI;
 @Produces("application/json")
 public class TablaAmortiza {
 	implementAPI objAPI = new implementAPI();
-	JSONObject jso = new JSONObject(); 
+	JSONObject jso; // = new JSONObject(); 
 	public TablaAmortiza() {}
 	@GET
 	public String Tabla(@Context HttpHeaders headers) {
 		try {			
 			objAPI.setConsulta("select * from fntablaamortcs(" + headers.getHeaderString("monto") + ", " + headers.getHeaderString("tasa") + ", " + headers.getHeaderString("plazo") + ");");
 			objAPI.ejecutaAPI();
-			jso = objAPI.getJsonObject();
+			jso = new JSONObject(objAPI.getstJS());//objAPI.getJsonObject();
 			System.out.println(jso.toString());
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());

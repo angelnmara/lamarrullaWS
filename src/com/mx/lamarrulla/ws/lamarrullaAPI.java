@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.mx.lamarrulla.implement.implementAPI;
@@ -16,17 +17,18 @@ import com.mx.lamarrulla.implement.implementAPI;
 @Produces("application/json")
 public class lamarrullaAPI {
 	implementAPI objAPI = new implementAPI();
-	JSONObject jso = new JSONObject();
+	JSONObject jso; // = new JSONObject();
 	public lamarrullaAPI() {}
 	@GET
-	public String api(@Context HttpHeaders headers) {
+	public String api(@Context HttpHeaders headers) throws JSONException {
 		try {			
 			objAPI.setConsulta("select * from fnAPI('"+ headers.getHeaderString("tabla") + "');");
 			objAPI.ejecutaAPI();		
-			jso = objAPI.getJsonObject();			
+			jso = new JSONObject("{" + headers.getHeaderString("tabla") + " : " + objAPI.getstJS() + "}");
 			System.out.println(jso.toString());
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
+			jso = new JSONObject("{error:\"" + ex.getMessage() + "\"}");
 		}						
 		return jso.toString();
 	}

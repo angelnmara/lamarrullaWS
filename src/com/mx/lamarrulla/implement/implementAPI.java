@@ -12,17 +12,19 @@ import com.mx.lamarrulla.interfaces.iAPI;
 
 public class implementAPI implements iAPI {
 	
-	private JSONObject jsonObject;
+	//private JSONObject jsonObject;
 	
 	private String consulta;
 	
-	public JSONObject getJsonObject() {
-		return jsonObject;
-	}
-
-	public void setJsonObject(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
-	}
+	private String stJS="";
+	
+//	public JSONObject getJsonObject() {
+//		return jsonObject;
+//	}
+//
+//	public void setJsonObject(JSONObject jsonObject) {
+//		this.jsonObject = jsonObject;
+//	}
 
 	public String getConsulta() {
 		return consulta;
@@ -30,6 +32,14 @@ public class implementAPI implements iAPI {
 
 	public void setConsulta(String consulta) {
 		this.consulta = consulta;
+	}
+	
+	public String getstJS() {
+		return stJS;
+	}
+	
+	public void setstJS(String stJS) {
+		this.stJS = stJS;
 	}
 
 	public void ejecutaAPI() {
@@ -66,8 +76,7 @@ public class implementAPI implements iAPI {
 		}
 
 		if (connection != null) {
-			try {
-				String stJS="";
+			try {				
 				System.out.println("You made it, take control your database now!");			
 				Statement st = connection.createStatement();
 				//ResultSet rs = st.executeQuery("select fnAPI('tbcatobj');");
@@ -78,7 +87,7 @@ public class implementAPI implements iAPI {
 					stJS+=rs.getString(1);				
 				}
 				System.out.println(stJS);
-				jsonObject = new JSONObject(stJS);					
+				//jsonObject = new JSONObject(stJS);					
 				rs.close();
 				st.close();
 			}catch(Exception ex) {
