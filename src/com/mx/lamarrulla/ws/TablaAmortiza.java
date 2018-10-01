@@ -21,7 +21,7 @@ public class TablaAmortiza {
 	@GET
 	public String Tabla(@Context HttpHeaders headers) {
 		try {			
-			objAPI.setConsulta("select * from fntablaamortcs(" + headers.getHeaderString("monto") + ", " + headers.getHeaderString("tasa") + ", " + headers.getHeaderString("plazo") + ");");
+			objAPI.setConsulta("select * from fntablaamortcs(" + headers.getHeaderString("monto") + ", " + headers.getHeaderString("tasa") + ", " + headers.getHeaderString("plazo") + ", " + headers.getHeaderString("tipoTasa") + ");");
 			objAPI.ejecutaAPI();
 			jso = new JSONObject(objAPI.getstJS());//objAPI.getJsonObject();
 			System.out.println(jso.toString());
