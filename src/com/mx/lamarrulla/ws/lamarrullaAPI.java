@@ -10,9 +10,11 @@ import javax.ws.rs.core.HttpHeaders;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mx.lamarrulla.implement.Secured;
 import com.mx.lamarrulla.implement.implementAPI;
 
 @Path("lamarrullaAPI")
+@Secured
 @Consumes("application/json")
 @Produces("application/json")
 public class lamarrullaAPI {

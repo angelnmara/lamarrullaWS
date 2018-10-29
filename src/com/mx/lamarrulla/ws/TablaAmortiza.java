@@ -1,7 +1,7 @@
 package com.mx.lamarrulla.ws;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -18,7 +18,7 @@ public class TablaAmortiza {
 	implementAPI objAPI = new implementAPI();
 	JSONObject jso; // = new JSONObject(); 
 	public TablaAmortiza() {}
-	@GET
+	@POST
 	public String Tabla(@Context HttpHeaders headers) {
 		try {			
 			objAPI.setConsulta("select * from fntablaamortcs(" + headers.getHeaderString("monto") + ", " + headers.getHeaderString("tasa") + ", " + headers.getHeaderString("plazo") + ", " + headers.getHeaderString("tipoTasa") + ");");
