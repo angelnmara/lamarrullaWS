@@ -3,14 +3,22 @@ package com.mx.lamarrulla.ws;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.mx.lamarrulla.security.Token;
+import com.mx.lamarrulla.security.ProtectUserPassword;
+
+@Path("Authentication")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 public class AuthenticationEndpoint {
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	
+	Token token = new Token();	
+	
+	@POST	
 	public Response authenticateUser(@FormParam("username") String username, 
             @FormParam("password") String password) {
 	
@@ -32,11 +40,15 @@ public class AuthenticationEndpoint {
 
 	private String issueToken(String username) {
 		// TODO Auto-generated method stub
-		return null;
+		String Token = token.CreateToken();
+		return Token;
 	}
 
+	@SuppressWarnings("static-access")
 	private void authenticate(String username, String password) {
 		// TODO Auto-generated method stub
-		
+		String[] strA = null;
+		ProtectUserPassword protectedUser = new ProtectUserPassword();
+		protectedUser.main(strA);
 	}
 }
