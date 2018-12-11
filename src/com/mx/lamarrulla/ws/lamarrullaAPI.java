@@ -44,6 +44,7 @@ public class lamarrullaAPI {
 			objAPI.setConsulta("select * from fnAPI(1, '"+ tabla + "', '', '', " + idTabla + ");");
 			objAPI.ejecutaAPI();			
 			System.out.println(objAPI.getstJS());
+			jso = new JSONObject(objAPI.getstJS());
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			jso = new JSONObject("{error:\"" + ex.getMessage() + "\"}");
