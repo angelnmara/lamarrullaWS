@@ -121,8 +121,8 @@ public class lamarrullaAPI {
                 ValoresA[i] = ValorPaso;
                 i++;
             }
-            campos = "(" + String.join(",", CamposA) + ")";
-            valores = "(" + String.join(",", ValoresA) + ")";
+            campos = String.join(",", CamposA);
+            valores = String.join(",", ValoresA);
             objAPI.setConsulta("select * from fnAPI(2, '"+ tabla + "', '" + campos + "', '" + valores + "', 0);");
             objAPI.ejecutaAPI();
             jso = new JSONObject(objAPI.getstJS());
