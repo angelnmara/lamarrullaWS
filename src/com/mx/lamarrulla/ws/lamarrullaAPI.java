@@ -57,8 +57,7 @@ public class lamarrullaAPI {
 		return jso.toString();
 	}	
 	@DELETE
-	@Path("{tabla}/{idTabla}")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Path("{tabla}/{idTabla}")	
 	public String apiDelete(@PathParam("tabla") String tabla, @PathParam("idTabla") String idTabla) throws JSONException {
 		try {			
 			if(idTabla==null || idTabla == "0") {
