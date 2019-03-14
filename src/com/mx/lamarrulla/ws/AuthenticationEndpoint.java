@@ -8,6 +8,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.mx.lamarrulla.security.Token;
+import com.mx.lamarrulla.security.VerifyProvidedPassword;
+import com.mx.lamarrulla.implement.implementAPI;
 import com.mx.lamarrulla.security.ProtectUserPassword;
 
 @Path("Authentication")
@@ -15,17 +17,20 @@ import com.mx.lamarrulla.security.ProtectUserPassword;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 public class AuthenticationEndpoint {	
 	
+	implementAPI objAPI = new implementAPI();
 	Token token = new Token();	
 	
 	@POST	
-	public Response authenticateUser(@FormParam("username") String username, 
+	public Response authenticateUser(@FormParam("username") String username,
+			@FormParam("correo") String correo,
             @FormParam("password") String password) {
 	
 	try {
 	System.out.println(username);
 	System.out.println(password);
+	System.out.println(correo);
 	// Authenticate the user using the credentials provided
-	authenticate(username, password);
+	authenticate(username, correo, password);
 	
 	// Issue a token for the user
 	String token = issueToken(username);
@@ -46,12 +51,28 @@ public class AuthenticationEndpoint {
 	}
 
 	@SuppressWarnings("static-access")
-	private void authenticate(String username, String password) {
+	private void authenticate(String username, String correo, String password) {
 		// TODO Auto-generated method stub
 		//String[] strA = null;
 		
-		ProtectUserPassword protectedUser = new ProtectUserPassword();
-		protectedUser.setMyPassword(password);
-		protectedUser.generaPassword();
+//		ProtectUserPassword protectedUser = new ProtectUserPassword();
+//		protectedUser.setMyPassword(password);
+//		protectedUser.generaPassword();
+		recuperaPassword(username, correo, password);
+		VerifyProvidedPassword vpp = new VerifyProvidedPassword();
+		
+	}
+
+	private void recuperaPassword(String username, String correo,  String password) {
+		// TODO Auto-generated method stub
+		String consulta = "select fcsecpassw, fcsalt\n" + 
+				"from tbusupassw a\n" + 
+				"inner join tbusu b\n" + 
+				"on a.fiidusu = b.fiidusu\n" + 
+				"where fcusupassw = crypt('" + password + "', fcusupassw)\n" + 
+				"and fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "';";
+		objAPI.setConsulta(consulta);
+		objAPI.ejecutaAPI();
+		String a = objAPI.getstJS();
 	}
 }

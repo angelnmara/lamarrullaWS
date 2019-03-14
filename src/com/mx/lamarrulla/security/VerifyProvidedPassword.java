@@ -1,17 +1,40 @@
 package com.mx.lamarrulla.security;
 
 public class VerifyProvidedPassword {
-	public static void main(String[] args)
-    {
-        // User provided password to validate
-        String providedPassword = "myPassword123";
-                
-        // Encrypted and Base64 encoded password read from database
-        String securePassword = "HhaNvzTsVYwS/x/zbYXlLOE3ETMXQgllqrDaJY9PD/U=";
-        
-        // Salt value stored in database 
-        String salt = "EqdmPh53c9x33EygXpTpcoJvc4VXLK";
-        
+		
+	public String getProvidedPassword() {
+		return providedPassword;
+	}
+
+	public void setProvidedPassword(String providedPassword) {
+		this.providedPassword = providedPassword;
+	}
+
+	public String getSecurePassword() {
+		return securePassword;
+	}
+
+	public void setSecurePassword(String securePassword) {
+		this.securePassword = securePassword;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	// User provided password to validate
+	private String providedPassword;
+	// Encrypted and Base64 encoded password read from database
+	private String securePassword;
+	// Salt value stored in database
+	private String salt;
+	
+	public boolean verificaPassword()
+    {        
         boolean passwordMatch = PasswordUtils.verifyUserPassword(providedPassword, securePassword, salt);
         
         if(passwordMatch) 
@@ -20,5 +43,7 @@ public class VerifyProvidedPassword {
         } else {
             System.out.println("Provided password is incorrect");
         }
+        
+        return passwordMatch;       
     }
 }
