@@ -92,9 +92,10 @@ public class implementAPI implements iAPI {
 				st.close();
 			}catch(Exception ex) {
 				System.out.println("ocurrio un error: " +ex.getMessage());
+				stJS = ex.getMessage();
 			}			
 		} else {
-			System.out.println("Failed to make connection!");
+			System.out.println("Failed to make connection!");			
 		}
 	}	
 }

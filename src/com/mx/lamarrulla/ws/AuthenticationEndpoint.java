@@ -1,5 +1,4 @@
 package com.mx.lamarrulla.ws;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -14,7 +13,7 @@ import com.mx.lamarrulla.security.ProtectUserPassword;
 @Path("Authentication")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-public class AuthenticationEndpoint {
+public class AuthenticationEndpoint {	
 	
 	Token token = new Token();	
 	
@@ -23,7 +22,8 @@ public class AuthenticationEndpoint {
             @FormParam("password") String password) {
 	
 	try {
-	
+	System.out.println(username);
+	System.out.println(password);
 	// Authenticate the user using the credentials provided
 	authenticate(username, password);
 	
@@ -39,7 +39,8 @@ public class AuthenticationEndpoint {
 	}
 
 	private String issueToken(String username) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
+		token.setUser(username);
 		String Token = token.CreateToken();
 		return Token;
 	}
@@ -47,8 +48,10 @@ public class AuthenticationEndpoint {
 	@SuppressWarnings("static-access")
 	private void authenticate(String username, String password) {
 		// TODO Auto-generated method stub
-		String[] strA = null;
+		//String[] strA = null;
+		
 		ProtectUserPassword protectedUser = new ProtectUserPassword();
-		protectedUser.main(strA);
+		protectedUser.setMyPassword(password);
+		protectedUser.generaPassword();
 	}
 }

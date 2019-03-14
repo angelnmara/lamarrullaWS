@@ -1,15 +1,42 @@
 package com.mx.lamarrulla.security;
 
 public class ProtectUserPassword {
-	public static void main(String[] args)
-    {
-        String myPassword = "myPassword123";
-        
+	
+	String myPassword;
+	public String getMyPassword() {
+		return myPassword;
+	}
+
+	public void setMyPassword(String myPassword) {
+		this.myPassword = myPassword;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public String getMySecurePassword() {
+		return mySecurePassword;
+	}
+
+	public void setMySecurePassword(String mySecurePassword) {
+		this.mySecurePassword = mySecurePassword;
+	}
+
+	String salt;
+	String mySecurePassword;
+	
+	public void generaPassword()
+    {        
         // Generate Salt. The generated value can be stored in DB. 
-        String salt = PasswordUtils.getSalt(30);
+        salt = PasswordUtils.getSalt(30);
         
         // Protect user's password. The generated value can be stored in DB.
-        String mySecurePassword = PasswordUtils.generateSecurePassword(myPassword, salt);
+        mySecurePassword = PasswordUtils.generateSecurePassword(myPassword, salt);
         
         // Print out protected password 
         System.out.println("My secure password = " + mySecurePassword);
