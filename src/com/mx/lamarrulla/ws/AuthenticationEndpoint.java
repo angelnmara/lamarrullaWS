@@ -7,6 +7,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.mx.lamarrulla.security.Token;
 import com.mx.lamarrulla.security.VerifyProvidedPassword;
 
@@ -23,6 +26,7 @@ public class AuthenticationEndpoint {
 	implementAPI objAPI = new implementAPI();
 	Token token = new Token();
 	Utils utils = new Utils();
+	JSONObject jso = new JSONObject();
 	
 	@POST	
 	public Response authenticateUser(@FormParam("username") String username,
@@ -55,7 +59,7 @@ public class AuthenticationEndpoint {
 	}
 
 	@SuppressWarnings("static-access")
-	private void authenticate(String username, String correo, String password) {
+	private void authenticate(String username, String correo, String password) throws JSONException {
 		// TODO Auto-generated method stub
 		//String[] strA = null;
 		
@@ -64,10 +68,17 @@ public class AuthenticationEndpoint {
 //		protectedUser.generaPassword();
 		recuperaPassword(username, correo, password);
 		VerifyProvidedPassword vpp = new VerifyProvidedPassword();
-		
+		vpp.setSecurePassword(jso.getString("fcsecpassw"));
+		vpp.setSalt(jso.getString("fcsalt"));
+		vpp.setProvidedPassword(password);
+		if(vpp.verificaPassword()) {
+			System.out.println("validado");
+		}else {
+			System.out.println("no validado");
+		}
 	}
 
-	private void recuperaPassword(String username, String correo,  String password) {
+	private void recuperaPassword(String username, String correo,  String password) throws JSONException {
 		// TODO Auto-generated method stub
 		String consulta = "select fcsecpassw, fcsalt\n" + 
 				"from tbusupassw a\n" + 
@@ -76,8 +87,8 @@ public class AuthenticationEndpoint {
 				"where fcusupassw = crypt('" + password + "', fcusupassw)\n" + 
 				"and fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "'";
 		utils.setConsulta(consulta);
-		utils.ejecutaConsultaJSON();				
-		System.out.println(utils.getJso());
-		String a = objAPI.getstJS();
+		utils.ejecutaConsultaJSON();						
+		jso = utils.getJso();
+		System.out.println(jso.toString());
 	}
 }
