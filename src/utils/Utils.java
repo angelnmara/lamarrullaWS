@@ -53,12 +53,21 @@ public class Utils {
 
 	public void setIdTipoPeticion(int idTipoPeticion) {
 		this.idTipoPeticion = idTipoPeticion;
+	}	
+	
+	public String getConsulta() {
+		return consulta;
+	}
+
+	public void setConsulta(String consulta) {
+		this.consulta = consulta;
 	}
 
 	private String tabla;
 	private int idTabla;
 	private String campos;
 	private String valores;
+	private String consulta;
 	/*
 		1.- Get
 		2.- Post
@@ -77,5 +86,15 @@ public class Utils {
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}		
-	}	
+	}
+	public void ejecutaConsultaJSON() {
+		try {
+			objAPI.setConsulta("select row_to_json(t) from (" + consulta + ")t");
+			objAPI.ejecutaAPI();			
+			System.out.println(objAPI.getstJS());
+			jso = new JSONObject(objAPI.getstJS());
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}		
+	}
 }

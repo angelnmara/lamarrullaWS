@@ -9,6 +9,9 @@ import javax.ws.rs.core.Response;
 
 import com.mx.lamarrulla.security.Token;
 import com.mx.lamarrulla.security.VerifyProvidedPassword;
+
+import utils.Utils;
+
 import com.mx.lamarrulla.implement.implementAPI;
 import com.mx.lamarrulla.security.ProtectUserPassword;
 
@@ -18,7 +21,8 @@ import com.mx.lamarrulla.security.ProtectUserPassword;
 public class AuthenticationEndpoint {	
 	
 	implementAPI objAPI = new implementAPI();
-	Token token = new Token();	
+	Token token = new Token();
+	Utils utils = new Utils();
 	
 	@POST	
 	public Response authenticateUser(@FormParam("username") String username,
@@ -70,10 +74,10 @@ public class AuthenticationEndpoint {
 				"inner join tbusu b\n" + 
 				"on a.fiidusu = b.fiidusu\n" + 
 				"where fcusupassw = crypt('" + password + "', fcusupassw)\n" + 
-				"and fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "';";
-		objAPI.setConsulta(consulta);
-		//objAPI.setTipoRegresa(1);
-		objAPI.ejecutaAPI();
+				"and fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "'";
+		utils.setConsulta(consulta);
+		utils.ejecutaConsultaJSON();				
+		System.out.println(utils.getJso());
 		String a = objAPI.getstJS();
 	}
 }
