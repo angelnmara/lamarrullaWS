@@ -72,6 +72,7 @@ public class AuthenticationEndpoint {
 				"where fcusupassw = crypt('" + password + "', fcusupassw)\n" + 
 				"and fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "';";
 		objAPI.setConsulta(consulta);
+		//objAPI.setTipoRegresa(1);
 		objAPI.ejecutaAPI();
 		String a = objAPI.getstJS();
 	}

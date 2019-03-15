@@ -22,12 +22,15 @@ import org.json.JSONObject;
 import com.mx.lamarrulla.implement.Secured;
 import com.mx.lamarrulla.implement.implementAPI;
 
+import utils.Utils;
+
 @Path("lamarrullaAPI")
 @Secured
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class lamarrullaAPI {
 	
+	Utils utils = new Utils();
 	implementAPI objAPI = new implementAPI();
 	JSONObject jso;
 	StringBuilder crunchifyBuilder = new StringBuilder();
@@ -38,16 +41,14 @@ public class lamarrullaAPI {
 
 	@GET
 	@Path("{tabla}/{idTabla}")
-	public String apiSelect(@PathParam("tabla") String tabla, @PathParam("idTabla") String idTabla) throws JSONException {		
+	public String apiSelect(@PathParam("tabla") String tabla, @PathParam("idTabla") int idTabla) throws JSONException {		
 		try {			
 			System.out.println(tabla + " " + idTabla);
-			if(idTabla==null) {
-				idTabla = "0";
-			}
-			objAPI.setConsulta("select * from fnAPI(1, '"+ tabla + "', '', '', " + idTabla + ");");
-			objAPI.ejecutaAPI();			
-			System.out.println(objAPI.getstJS());
-			jso = new JSONObject(objAPI.getstJS());
+			utils.setIdTipoPeticion(1);
+			utils.setTabla(tabla);
+			utils.setIdTabla(idTabla);
+			utils.EjecutaConsulta();
+			jso = utils.getJso();
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			jso = new JSONObject("{error:\"" + ex.getMessage() + "\"}");
@@ -56,16 +57,17 @@ public class lamarrullaAPI {
 	}	
 	@DELETE
 	@Path("{tabla}/{idTabla}")	
-	public String apiDelete(@PathParam("tabla") String tabla, @PathParam("idTabla") String idTabla) throws JSONException {
+	public String apiDelete(@PathParam("tabla") String tabla, @PathParam("idTabla") int idTabla) throws JSONException {
 		try {			
-			if(idTabla==null || idTabla == "0") {
+			if(idTabla == 0) {
 				System.out.println("no se procesara idtabla = " + idTabla);
 				jso = new JSONObject("{error:\"Se tiene que seleccionar el identificador a borrar\"}");				
 			}else {
-				objAPI.setConsulta("select * from fnAPI(4, '"+ tabla + "', '', '', " + idTabla + ");");
-				objAPI.ejecutaAPI();
-				System.out.println(objAPI.getstJS());
-				jso = new JSONObject(objAPI.getstJS());
+				utils.setIdTipoPeticion(4);
+				utils.setTabla(tabla);
+				utils.setIdTabla(idTabla);
+				utils.EjecutaConsulta();
+				jso = utils.getJso();
 			}		
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
@@ -78,9 +80,12 @@ public class lamarrullaAPI {
 	public String apiInsert(@PathParam("tabla") String tabla, InputStream incomingData) throws JSONException {					
         try {            
             CargaCamposValores(incomingData);
-            objAPI.setConsulta("select * from fnAPI(2, '"+ tabla + "', '" + campos + "', '" + valores + "', 0);");
-            objAPI.ejecutaAPI();
-            jso = new JSONObject(objAPI.getstJS());
+            utils.setIdTipoPeticion(2);
+			utils.setTabla(tabla);
+			utils.setCampos(campos);
+			utils.setValores(valores);
+			utils.EjecutaConsulta();
+			jso = utils.getJso();
         } catch (Exception e) {
             System.out.println("Error Parsing: - ");
             jso = new JSONObject("{error:\"Ocurrio un error al extraer el body\"}") ;
@@ -128,10 +133,12 @@ public class lamarrullaAPI {
 	public String apiUpdate(@PathParam("tabla") String tabla, @PathParam("idTabla") int idTabla, InputStream incomingData) throws JSONException {				
 		try {			
 			CargaCamposValores(incomingData);
-			objAPI.setConsulta("select * from fnAPI(3, '"+ tabla + "', '" + campos + "', '" + valores + "', " + idTabla + ");");
-			objAPI.ejecutaAPI();			
-			System.out.println(objAPI.getstJS());
-			jso = new JSONObject(objAPI.getstJS());
+			utils.setIdTipoPeticion(3);
+			utils.setTabla(tabla);
+			utils.setCampos(campos);
+			utils.setValores(valores);
+			utils.setIdTabla(idTabla);
+			utils.EjecutaConsulta();
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			jso = new JSONObject("{error:\"" + ex.getMessage() + "\"}");
