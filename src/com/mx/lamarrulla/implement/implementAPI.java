@@ -13,10 +13,7 @@ import javax.json.stream.JsonGenerator;
 
 import com.mx.lamarrulla.interfaces.iAPI;
 
-public class implementAPI implements iAPI {
-	
-	//private JSONObject jsonObject;
-	JsonGenerator jgen;
+public class implementAPI implements iAPI {	
 	
 	private String consulta;
 	
@@ -27,14 +24,6 @@ public class implementAPI implements iAPI {
 		1.- JSON
 	*/
 	private int tipoRegresa = 0;
-	
-//	public JSONObject getJsonObject() {
-//		return jsonObject;
-//	}
-//
-//	public void setJsonObject(JSONObject jsonObject) {
-//		this.jsonObject = jsonObject;
-//	}
 
 	public int getTipoRegresa() {
 		return tipoRegresa;
@@ -97,16 +86,7 @@ public class implementAPI implements iAPI {
 			try {				
 				System.out.println("You made it, take control your database now!");			
 				Statement st = connection.createStatement();				
-				ResultSet rs = st.executeQuery(consulta);
-				ResultSetMetaData rmsd = rs.getMetaData();
-				int numColumns = rmsd.getColumnCount();
-				String[] columnNames = new String[numColumns];
-				int[] columnTypes = new int[numColumns];
-				for(int i=0; i< columnNames.length;i++) {
-					columnNames[i] = rmsd.getColumnLabel(i+1);
-					columnTypes[i] = rmsd.getColumnType(i+1);
-				}
-				jgen.writeStartArray();												
+				ResultSet rs = st.executeQuery(consulta);															
 				while(rs.next()) {
 					System.out.print("columna uno regresada ");
 					stJS+=rs.getString(1);				

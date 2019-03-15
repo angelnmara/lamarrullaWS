@@ -47,7 +47,7 @@ public class lamarrullaAPI {
 			utils.setIdTipoPeticion(1);
 			utils.setTabla(tabla);
 			utils.setIdTabla(idTabla);
-			utils.EjecutaConsulta();
+			utils.ejecutaConsultaAPI();
 			jso = utils.getJso();
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
@@ -66,7 +66,7 @@ public class lamarrullaAPI {
 				utils.setIdTipoPeticion(4);
 				utils.setTabla(tabla);
 				utils.setIdTabla(idTabla);
-				utils.EjecutaConsulta();
+				utils.ejecutaConsultaAPI();
 				jso = utils.getJso();
 			}		
 		}catch(Exception ex) {
@@ -84,7 +84,7 @@ public class lamarrullaAPI {
 			utils.setTabla(tabla);
 			utils.setCampos(campos);
 			utils.setValores(valores);
-			utils.EjecutaConsulta();
+			utils.ejecutaConsultaAPI();
 			jso = utils.getJso();
         } catch (Exception e) {
             System.out.println("Error Parsing: - ");
@@ -138,7 +138,7 @@ public class lamarrullaAPI {
 			utils.setCampos(campos);
 			utils.setValores(valores);
 			utils.setIdTabla(idTabla);
-			utils.EjecutaConsulta();
+			utils.ejecutaConsultaAPI();
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			jso = new JSONObject("{error:\"" + ex.getMessage() + "\"}");

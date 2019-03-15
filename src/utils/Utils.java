@@ -67,26 +67,8 @@ public class Utils {
 	*/
 	private int idTipoPeticion;	
 	private JSONObject jso = new JSONObject();
-//	private JsonGenerator jgen;
-//	private ResultSet rs;
-	
-//	public JsonGenerator getJgen() {
-//		return jgen;
-//	}
-//
-//	public void setJgen(JsonGenerator jgen) {
-//		this.jgen = jgen;
-//	}
-//
-//	public ResultSet getRs() {
-//		return rs;
-//	}
-//
-//	public void setRs(ResultSet rs) {
-//		this.rs = rs;
-//	}
 
-	public void EjecutaConsulta() {
+	public void ejecutaConsultaAPI() {
 		try {
 			objAPI.setConsulta("select * from fnAPI(" + idTipoPeticion + ", '"+ tabla + "', '" + campos + "', '" + valores + "', " + idTabla + ");");
 			objAPI.ejecutaAPI();			
@@ -95,100 +77,5 @@ public class Utils {
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}		
-	}
-	
-//	public void ExtractJSON() {
-//		
-//		try {
-//			ResultSetMetaData rsmd = rs.getMetaData();
-//	        int numColumns = rsmd.getColumnCount();
-//	        String[] columnNames = new String[numColumns];
-//	        int[] columnTypes = new int[numColumns];
-//
-//	        for (int i = 0; i < columnNames.length; i++) {
-//	            columnNames[i] = rsmd.getColumnLabel(i + 1);
-//	            columnTypes[i] = rsmd.getColumnType(i + 1);
-//	        }
-//			
-//			jgen.writeStartArray();
-//
-//	        while (rs.next()) {
-//
-//	            jgen.writeStartObject();
-//
-//	            for (int i = 0; i < columnNames.length; i++) {
-//	            	int c = i+1;
-//	            	if(rs.wasNull()) {
-//	                	jgen.write(columnNames[i], "");	                	
-//	                }else {
-//	                	switch (columnTypes[i]) {
-//	                	case Types.BIGINT:
-//		                case Types.INTEGER:
-//		                	jgen.write(columnNames[i], rs.getInt(c));	                       		                    
-//		                    break;
-//		                case Types.DECIMAL:		                	
-//		                case Types.NUMERIC:
-//		                case Types.REAL:		                	
-//		                case Types.DOUBLE:
-//		                    jgen.write(columnNames[i], rs.getDouble(c));
-//		                    break;
-//		                case Types.FLOAT:
-//		                	jgen.write(columnNames[i], rs.getFloat(c));
-//		                	break;
-//		                case Types.NVARCHAR:		                	
-//		                case Types.VARCHAR:
-//		                case Types.LONGNVARCHAR:
-//		                case Types.LONGVARCHAR:
-//		                case Types.BINARY:
-//		                case Types.VARBINARY:
-//		                case Types.LONGVARBINARY:
-//		                    jgen.write(columnNames[i], rs.getString(i + 1));
-//		                    break;
-//		                case Types.BOOLEAN:
-//		                	jgen.write(columnNames[i], rs.getBoolean(c));
-//		                	break;
-//		                case Types.BIT:		                    		                    
-//		                    jgen.write(columnNames[i], rs.getByte(c));
-//		                    break;		                
-//		                case Types.TINYINT:
-//		                case Types.SMALLINT:
-//		                    jgen.write(columnNames[i], rs.getShort(c));		                    
-//		                    break;
-//		                case Types.DATE:
-//		                	jgen.write(columnNames[i], rs.getDate(c).toString());
-//		                    break;
-//		                case Types.TIMESTAMP:
-//		                	jgen.write(columnNames[i], rs.getTime(c).toString());
-//		                    break;
-//		                case Types.BLOB:
-//		                	jgen.write(columnNames[i], rs.getBlob(c).toString());		                    		                   
-//		                    break;
-//		                case Types.CLOB:
-//		                	jgen.write(columnNames[c], rs.getClob(c).toString());		                    
-//		                    break;
-//		                case Types.ARRAY:
-//		                    throw new RuntimeException("ResultSetSerializer not yet implemented for SQL type ARRAY");
-//
-//		                case Types.STRUCT:
-//		                    throw new RuntimeException("ResultSetSerializer not yet implemented for SQL type STRUCT");
-//
-//		                case Types.DISTINCT:
-//		                    throw new RuntimeException("ResultSetSerializer not yet implemented for SQL type DISTINCT");
-//
-//		                case Types.REF:
-//		                    throw new RuntimeException("ResultSetSerializer not yet implemented for SQL type REF");
-//
-//		                case Types.JAVA_OBJECT:
-//		                default:
-//		                	jgen.write(columnNames[c], rs.getString(c).toString());
-//		                    break;
-//		                }		            
-//	                }	                
-//	            	jgen.writeEnd();
-//	            	}
-//	            }	        
-//		}catch(Exception ex){
-//			System.out.println(ex.getMessage());
-//		}			
-//}
+	}	
 }
