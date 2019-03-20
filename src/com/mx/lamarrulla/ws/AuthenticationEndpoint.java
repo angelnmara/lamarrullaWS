@@ -1,4 +1,6 @@
 package com.mx.lamarrulla.ws;
+import java.util.ResourceBundle;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -51,6 +53,7 @@ public class AuthenticationEndpoint {
 	}
 	
 	// Return the token on the response
+	utils.getStringFromXML("token");
 	return Response.ok(token).build();
 	
 		} catch (Exception e) {
