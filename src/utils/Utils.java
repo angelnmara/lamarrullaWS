@@ -146,16 +146,18 @@ public class Utils {
         XPath xpath = xpf.newXPath();
          
         //Get first match
-        String name = (String) xpath.evaluate("/resources/string", xml, XPathConstants.STRING);
-         
+        String name = (String) xpath.evaluate("/resources/string[@name='" + recurso + "']", xml, XPathConstants.STRING);
+//         
         System.out.println(name);   //Lokesh
          
         //Get all matches
-        NodeList nodes = (NodeList) xpath.evaluate("/resources/string/@name", xml, XPathConstants.NODESET);
-         
-        for (int i = 0; i < nodes.getLength(); i++) {
-            System.out.println(nodes.item(i).getNodeValue());   //1 2
-        }
-		return "";
+//        NodeList nodes = (NodeList) xpath.evaluate("/resources/string/@name", xml, XPathConstants.NODESET);
+//         
+//        for (int i = 0; i < nodes.getLength(); i++) {
+//        	if(nodes.item(i).getNodeValue().contains(recurso)) {
+//        		System.out.println((String) xpath.evaluate("/resources/string", xml, XPathConstants.STRING));
+//        	}            
+//        }
+		return name;
 	}
 }

@@ -53,8 +53,8 @@ public class AuthenticationEndpoint {
 	}
 	
 	// Return the token on the response
-	utils.getStringFromXML("token");
-	return Response.ok(token).build();
+	String salida = utils.getStringFromXML("responseToken");		
+	return Response.ok(String.format(salida, token, jso.getString("fcsalt"))).build();
 	
 		} catch (Exception e) {
 			return Response.status(Response.Status.FORBIDDEN).build();
