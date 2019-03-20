@@ -16,7 +16,6 @@ import com.mx.lamarrulla.security.VerifyProvidedPassword;
 import utils.Utils;
 
 import com.mx.lamarrulla.implement.implementAPI;
-import com.mx.lamarrulla.security.ProtectUserPassword;
 
 @Path("Authentication")
 @Produces(MediaType.APPLICATION_JSON)
@@ -63,7 +62,8 @@ public class AuthenticationEndpoint {
 		// TODO Auto-generated method stub		
 		token.setUser(username);
 		token.setSecret(jso.getString("fcsalt"));
-		String Token = token.CreateToken();
+		token.CreateToken();
+		String Token = token.getToken();
 		return Token;
 	}
 
