@@ -61,5 +61,12 @@
 	    <artifactId>commons-codec</artifactId>
 	    <version>1.10</version>
 	</dependency>		
+	<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
+	<dependency>
+	    <groupId>org.jboss.resteasy</groupId>
+	    <artifactId>resteasy-jaxrs</artifactId>
+	    <version>3.6.2.Final</version>
+	</dependency>
+	
   </dependencies>
 </project>

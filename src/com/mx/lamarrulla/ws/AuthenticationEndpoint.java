@@ -27,6 +27,7 @@ public class AuthenticationEndpoint {
 	Token token = new Token();
 	Utils utils = new Utils();
 	JSONObject jso = new JSONObject();
+	VerifyProvidedPassword vpp = new VerifyProvidedPassword();
 	
 	@POST	
 	public Response authenticateUser(@FormParam("username") String username,
@@ -37,11 +38,18 @@ public class AuthenticationEndpoint {
 	System.out.println(username);
 	System.out.println(password);
 	System.out.println(correo);
-	// Authenticate the user using the credentials provided
-	authenticate(username, correo, password);
 	
-	// Issue a token for the user
-	String token = issueToken(username);
+	String token = "";
+	
+	// Authenticate the user using the credentials provided
+	authenticate(username, correo, password);	
+	
+	if(vpp.verificaPassword()) {
+		// Issue a token for the user
+		token = issueToken(username);
+	}else {
+		System.out.println("no validado");
+	}
 	
 	// Return the token on the response
 	return Response.ok(token).build();
@@ -51,9 +59,10 @@ public class AuthenticationEndpoint {
 		}      
 	}
 
-	private String issueToken(String username) {
+	private String issueToken(String username) throws JSONException {
 		// TODO Auto-generated method stub		
 		token.setUser(username);
+		token.setSecret(jso.getString("fcsalt"));
 		String Token = token.CreateToken();
 		return Token;
 	}
@@ -66,16 +75,10 @@ public class AuthenticationEndpoint {
 //		ProtectUserPassword protectedUser = new ProtectUserPassword();
 //		protectedUser.setMyPassword(password);
 //		protectedUser.generaPassword();
-		recuperaPassword(username, correo, password);
-		VerifyProvidedPassword vpp = new VerifyProvidedPassword();
+		recuperaPassword(username, correo, password);		
 		vpp.setSecurePassword(jso.getString("fcsecpassw"));
 		vpp.setSalt(jso.getString("fcsalt"));
-		vpp.setProvidedPassword(password);
-		if(vpp.verificaPassword()) {
-			System.out.println("validado");
-		}else {
-			System.out.println("no validado");
-		}
+		vpp.setProvidedPassword(password);		
 	}
 
 	private void recuperaPassword(String username, String correo,  String password) throws JSONException {

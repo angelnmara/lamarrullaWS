@@ -1,4 +1,4 @@
-package com.mx.lamarrulla.ws;
+package com.mx.lamarrulla.ws.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,10 +24,10 @@ import com.mx.lamarrulla.implement.implementAPI;
 
 import utils.Utils;
 
-@Path("lamarrullaAPI")
-@Secured
+@Path("/lamarrullaAPI")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+
 public class lamarrullaAPI {
 	
 	Utils utils = new Utils();
@@ -40,6 +40,7 @@ public class lamarrullaAPI {
 	public lamarrullaAPI() {}
 
 	@GET
+	@Secured
 	@Path("{tabla}/{idTabla}")
 	public String apiSelect(@PathParam("tabla") String tabla, @PathParam("idTabla") int idTabla) throws JSONException {		
 		try {			

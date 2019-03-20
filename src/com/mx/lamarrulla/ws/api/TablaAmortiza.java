@@ -1,4 +1,4 @@
-package com.mx.lamarrulla.ws;
+package com.mx.lamarrulla.ws.api;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -29,5 +29,5 @@ public class TablaAmortiza {
 			System.out.println(ex.getMessage());
 		}						
 		return jso.toString();
-	}	
+	}
 }

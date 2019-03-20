@@ -9,7 +9,16 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 public class Token {
 	
 	private String user;
+	private String secret;	
 	
+	public String getSecret() {
+		return secret;
+	}
+
+	public void setSecret(String secret) {
+		this.secret = secret;
+	}
+
 	public String getUser() {
 		return user;
 	}
@@ -21,7 +30,7 @@ public class Token {
 	public String CreateToken() {
 		String token = "";
 		try {
-		    Algorithm algorithm = Algorithm.HMAC256("secret");
+		    Algorithm algorithm = Algorithm.HMAC256(secret);
 		    token = JWT.create()
 		        .withIssuer(user)
 		        .sign(algorithm);
