@@ -1,4 +1,4 @@
-package com.mx.lamarrulla.ws.api;
+package com.mx.lamarrulla.ws;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,8 +28,7 @@ import utils.Utils;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 
-public class lamarrullaAPI {
-	
+public class LaMarrullaAPI {
 	Utils utils = new Utils();
 	implementAPI objAPI = new implementAPI();
 	JSONObject jso;
@@ -37,7 +36,7 @@ public class lamarrullaAPI {
 	String campos = "";
 	String valores = "";
 
-	public lamarrullaAPI() {}
+	public LaMarrullaAPI() {}
 
 	@GET
 	@Secured

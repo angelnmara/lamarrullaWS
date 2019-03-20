@@ -10,7 +10,7 @@ id = "WebApp_ID" version = "3.0">
 <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 <init-param>
 <param-name>jersey.config.server.provider.packages</param-name>
-<param-value>com.mx.lamarrulla.ws.api;com.mx.lamarrulla.implement</param-value>
+<param-value>com.mx.lamarrulla.ws;com.mx.lamarrulla.implement</param-value>
 </init-param>
 <init-param>
 <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>

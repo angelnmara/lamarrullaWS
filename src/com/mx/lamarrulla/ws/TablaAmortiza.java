@@ -1,4 +1,4 @@
-package com.mx.lamarrulla.ws.api;
+package com.mx.lamarrulla.ws;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
