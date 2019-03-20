@@ -1,5 +1,4 @@
 package com.mx.lamarrulla.ws;
-import java.util.ResourceBundle;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -70,14 +69,8 @@ public class AuthenticationEndpoint {
 		return Token;
 	}
 
-	@SuppressWarnings("static-access")
 	private void authenticate(String username, String correo, String password) throws JSONException {
-		// TODO Auto-generated method stub
-		//String[] strA = null;
-		
-//		ProtectUserPassword protectedUser = new ProtectUserPassword();
-//		protectedUser.setMyPassword(password);
-//		protectedUser.generaPassword();
+		// TODO Auto-generated method stub		
 		recuperaPassword(username, correo, password);		
 		vpp.setSecurePassword(jso.getString("fcsecpassw"));
 		vpp.setSalt(jso.getString("fcsalt"));

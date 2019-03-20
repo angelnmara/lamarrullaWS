@@ -14,7 +14,6 @@ import javax.xml.xpath.XPathFactory;
 
 import org.json.JSONObject;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.mx.lamarrulla.implement.implementAPI;
