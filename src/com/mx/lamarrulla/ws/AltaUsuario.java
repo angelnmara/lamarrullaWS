@@ -74,8 +74,8 @@ public class AltaUsuario {
 		// TODO Auto-generated method stub
 		boolean respuesta = false;
 		try {
-			String consulta = "insert into tbUsu(fcUsuNom, fcUsuCorrElec, fiIdRol, fiIdEmpresa) \r\n" + 
-							"values ('" + username + "', '" + correo + "', 1, 1) returning fiIdUsu;";
+			String consulta = "insert into tbUsu(fcUsuNom, fcUsuCorrElec) \r\n" + 
+							"values ('" + username + "', '" + correo + "') returning fiIdUsu;";
 			System.out.println(consulta);
 			objAPI.setConsulta(consulta);
 			objAPI.ejecutaAPI();

@@ -68,6 +68,7 @@ public class Token {
 		    autenticado = true;		    
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
+			autenticado = false;
 		}		
 	}
 }
