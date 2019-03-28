@@ -17,8 +17,7 @@ public class Token {
 	private String user;
 	private String secret;
 	private String token;
-	private boolean autenticado = false;
-	private Clock clock;
+	private boolean autenticado = false;	
 		
 	public boolean isAutenticado() {
 		return autenticado;
