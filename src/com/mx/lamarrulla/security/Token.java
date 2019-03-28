@@ -76,7 +76,11 @@ public class Token {
 		    		.acceptIssuedAt(0)
 		    		.build();			
 		    DecodedJWT jwt = verifier.verify(token);
-		    autenticado = true;		    
+		    if(jwt.getIssuer().contentEquals(user)) {
+		    	autenticado = true;
+		    }else {
+		    	autenticado = false;
+		    }		    		    
 		}catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			autenticado = false;
