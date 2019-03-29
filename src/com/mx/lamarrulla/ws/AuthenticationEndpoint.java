@@ -53,7 +53,7 @@ public class AuthenticationEndpoint {
 	
 	// Return the token on the response
 	String salida = utils.getStringFromXML("responseToken");		
-	return Response.ok(String.format(salida, token, jso.getString("fcsalt"))).build();
+	return Response.ok(String.format(salida, token, jso.getString("fcsalt"), jso.getString("fcusunom"))).build();
 	
 		} catch (Exception e) {
 			return Response.status(Response.Status.FORBIDDEN).build();
@@ -79,7 +79,7 @@ public class AuthenticationEndpoint {
 
 	private void recuperaPassword(String username, String correo,  String password) throws JSONException {
 		// TODO Auto-generated method stub
-		String consulta = "select fcsecpassw, fcsalt\n" + 
+		String consulta = "select fcsecpassw, fcsalt, fcusunom\n" + 
 				"from tbusupassw a\n" + 
 				"inner join tbusu b\n" + 
 				"on a.fiidusu = b.fiidusu\n" + 

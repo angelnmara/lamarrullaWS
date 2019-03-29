@@ -20,7 +20,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 	
 	private static final String REALM = "example";
     private static final String AUTHENTICATION_SCHEME = "Bearer";
-    private static final String Usuario = "usuario";
+    private static final String Usuario = "username";
     private static final String Secret = "secret";
     
     Token token = new Token();
