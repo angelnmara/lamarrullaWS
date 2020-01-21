@@ -85,7 +85,7 @@ public class AuthenticationEndpoint {
 				"inner join tbusu b\n" + 
 				"on a.fiidusu = b.fiidusu\n" + 
 				"where fcusupassw = crypt('" + password + "', fcusupassw)\n" + 
-				"and fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "'";
+				"and (fcusunom = '" + username + "' or fcusucorrelec = '" + correo + "')";
 		utils.setConsulta(consulta);
 		utils.ejecutaConsultaJSON();						
 		jso = utils.getJso();
