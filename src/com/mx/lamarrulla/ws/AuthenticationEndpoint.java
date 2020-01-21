@@ -46,14 +46,15 @@ public class AuthenticationEndpoint {
 	
 	if(vpp.verificaPassword()) {
 		// Issue a token for the user
-		token = issueToken(username);
+		token = issueToken((username==null?correo:username));
 	}else {
 		System.out.println("no validado");
 	}
 	
 	// Return the token on the response
 	String salida = utils.getStringFromXML("responseToken");		
-	return Response.ok(String.format(salida, token, jso.getString("fcsalt"), jso.getString("fcusunom"))).build();
+	return Response.ok(String.format(salida, token, jso.getString("fcsalt"), (username==null?correo:username))).build();
+	//	jso.getString("fcusunom")
 	
 		} catch (Exception e) {
 			return Response.status(Response.Status.FORBIDDEN).build();
